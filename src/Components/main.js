@@ -47,7 +47,7 @@ const MainComponent = (props) => {
         class="btn btn-primary"
         onClick={() => handleChange(username, repo)}
       >
-        Submit
+        Get Commites
       </button>
 
       <Table commit={commit} username={username} repo={repo} />
