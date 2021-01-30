@@ -23,7 +23,7 @@ const Table = (props) => {
                 <th scope="row">{index + 1}</th>
                 <td>{capitalize(data.commit.committer.name)}</td>
                 <td>{data.commit.committer.email}</td>
-                <td>{data.commit.message}</td>
+                <td>{capitalize(data.commit.message)}</td>
               </tr>
             );
           })}
