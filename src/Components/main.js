@@ -6,7 +6,7 @@ const MainComponent = (props) => {
   const [commit, setCommit] = useState([]);
   const [username, setUsername] = useState("fheemabbas");
   const [repo, setRepo] = useState("github-activity");
-  useEffect(async () => {
+  useEffect((username, repo) => {
     getCommite(username, repo);
   }, []);
   const getCommite = async (username, repo) => {
