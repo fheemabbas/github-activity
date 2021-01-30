@@ -1,34 +1,45 @@
 import React from "react";
+import "../App.css";
 const Table = (props) => {
-  const { commit } = props;
-  console.log("in table COmponent Commit :", commit);
+  const { commit, username, repo } = props;
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   return (
     <React.Fragment>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Commit Sr</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Message</th>
-          </tr>
-        </thead>
-        <tbody>
-          {commit.map((data, index) => {
-            return (
+      {commit.length < 1 ? (
+        <div className="bold">No data found</div>
+      ) : (
+        <React.Fragment>
+          <div>
+            Commite data from UserName :{" "}
+            <span className="bold">{username} </span> And Repositorie Name :{" "}
+            <span className="bold">{repo}</span>{" "}
+          </div>
+          <table className="table table-bordered">
+            <thead>
               <tr>
-                <th scope="row">{index + 1}</th>
-                <td>{capitalize(data.commit.committer.name)}</td>
-                <td>{data.commit.committer.email}</td>
-                <td>{capitalize(data.commit.message)}</td>
+                <td className="bold">Commit Sr</td>
+                <td className="bold">Name</td>
+                <td className="bold">Email</td>
+                <td className="bold">Message</td>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {commit.map((data, index) => {
+                return (
+                  <tr>
+                    <td className="bold">{index + 1}</td>
+                    <td>{capitalize(data.commit.committer.name)}</td>
+                    <td>{data.commit.committer.email}</td>
+                    <td>{capitalize(data.commit.message)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };
