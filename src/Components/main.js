@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Table from "./table";
 const MainComponent = (props) => {
   const [commit, setCommit] = useState([]);
   useEffect(async () => {
@@ -10,7 +11,10 @@ const MainComponent = (props) => {
         return res.data;
       });
   }, []);
-  console.log("commit is :", commit);
-  return <div>Main Component</div>;
+  return (
+    <div>
+      <Table commit={commit} />
+    </div>
+  );
 };
 export default MainComponent;
