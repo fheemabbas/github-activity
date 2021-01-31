@@ -30,8 +30,8 @@ const Table = (props) => {
                 return (
                   <tr>
                     <td className="bold">{index + 1}</td>
-                    <td>{capitalize(data.commit.committer.name)}</td>
-                    <td>{data.commit.committer.email}</td>
+                    <td>{capitalize(data.commit.author.name)}</td>
+                    <td>{data.commit.author.email}</td>
                     <td>{capitalize(data.commit.message)}</td>
                   </tr>
                 );
