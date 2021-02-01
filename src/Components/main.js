@@ -4,14 +4,15 @@ import Table from "./table";
 import "../App.css";
 const MainComponent = (props) => {
   const [commit, setCommit] = useState([]);
-  const [username, setUsername] = useState("fheemabbas");
-  const [repo, setRepo] = useState("github-activity");
+  const [username, setUsername] = useState("fheemabbas/github-activity");
   useEffect(() => {
-    getCommite("fheemabbas", "github-activity");
+    getCommite("fheemabbas/github-activity");
   }, []);
-  const getCommite = async (username, repo) => {
+  const getCommite = async (username) => {
+    // console.log("repo :", repos.split(" ").join(""));
+    const repo = username.split(" ").join("");
     await axios
-      .get(`https://api.github.com/repos/${username}/${repo}/commits`)
+      .get(`https://api.github.com/repos/${repo}/commits`)
       .then((res) => {
         setCommit(res.data);
         return res.data;
@@ -21,8 +22,8 @@ const MainComponent = (props) => {
         setCommit([]);
       });
   };
-  const handleChange = (username, repo) => {
-    getCommite(username, repo);
+  const handleChange = (username) => {
+    getCommite(username);
   };
   return (
     <div>
@@ -34,23 +35,15 @@ const MainComponent = (props) => {
         placeholder="Enter Github User Name"
         onChange={(e) => setUsername(e.target.value)}
       />
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-        placeholder="Enter Repository Name"
-        onChange={(e) => setRepo(e.target.value)}
-      />
       <button
         type="submit"
         class="btn btn-primary"
-        onClick={() => handleChange(username, repo)}
+        onClick={() => handleChange(username)}
       >
         Get Commites
       </button>
 
-      <Table commit={commit} username={username} repo={repo} />
+      <Table commit={commit} username={username} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 const Table = (props) => {
-  const { commit, username, repo } = props;
+  const { commit, username } = props;
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -12,9 +12,8 @@ const Table = (props) => {
       ) : (
         <React.Fragment>
           <div>
-            Commite data from UserName :{" "}
-            <span className="bold">{username} </span> And Repositorie Name :{" "}
-            <span className="bold">{repo}</span>{" "}
+            Commite data from Repository :{" "}
+            <span className="bold">{username} </span>
           </div>
           <table className="table table-bordered">
             <thead>
